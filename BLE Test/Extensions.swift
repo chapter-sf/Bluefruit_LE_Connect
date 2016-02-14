@@ -162,10 +162,10 @@ func printLog(obj:AnyObject, funcName:String, logString:String?) {
     }
     
     if logString != nil {
-        print("\(obj.classForCoder!.description()) \(funcName) : \(logString!)")
+        print("\(obj) \(funcName) : \(logString!)")
     }
     else {
-        print("\(obj.classForCoder!.description()) \(funcName)")
+        print("\(obj) \(funcName)")
     }
     
 }
