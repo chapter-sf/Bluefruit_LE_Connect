@@ -83,6 +83,11 @@ class BLEAppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
     }
     
     
+    func applicationDidEnterBackground(application: UIApplication) {
+        NSLog("Entered background mode")
+        application.requestAdditionalTime(30)
+    }
+    
     func applicationDidBecomeActive(application: UIApplication) {
         
         mainViewController?.didBecomeActive()

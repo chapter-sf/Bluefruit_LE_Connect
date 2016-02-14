@@ -36,6 +36,7 @@
 		A9C61DEB1B6A961F005C3D9B /* MqttSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C61DEA1B6A961F005C3D9B /* MqttSettings.swift */; };
 		A9C61DED1B6AC782005C3D9B /* MqttSettingsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9C61DEC1B6AC782005C3D9B /* MqttSettingsHeaderCell.swift */; };
 		A9C88E7A1B7E47ED00A3F330 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = A9C88E791B7E47ED00A3F330 /* Settings.bundle */; };
+		B6C8C5751C704072009906FA /* BackgroundProcessingRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B6C8C5741C704072009906FA /* BackgroundProcessingRequest.swift */; };
 		D799733A6FE07F51B41A7F65 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F99478C57E5542A6C520337F /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		F007EDBA1A3064B60023FCD6 /* ControllerViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = F007EDB91A3064B60023FCD6 /* ControllerViewController_iPad.xib */; };
 		F007EDC31A3191BC0023FCD6 /* ble-arrow_button_down.png in Resources */ = {isa = PBXBuildFile; fileRef = F007EDBB1A3191BC0023FCD6 /* ble-arrow_button_down.png */; };
@@ -245,6 +246,7 @@
 		A9C61DEC1B6AC782005C3D9B /* MqttSettingsHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MqttSettingsHeaderCell.swift; sourceTree = "<group>"; };
 		A9C88E791B7E47ED00A3F330 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		ADDE3DF62E9F32DA6CD326FB /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		B6C8C5741C704072009906FA /* BackgroundProcessingRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundProcessingRequest.swift; sourceTree = "<group>"; };
 		F007EDB91A3064B60023FCD6 /* ControllerViewController_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ControllerViewController_iPad.xib; sourceTree = "<group>"; };
 		F007EDBB1A3191BC0023FCD6 /* ble-arrow_button_down.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ble-arrow_button_down.png"; sourceTree = "<group>"; };
 		F007EDBC1A3191BC0023FCD6 /* ble-arrow_button_down@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ble-arrow_button_down@2x.png"; sourceTree = "<group>"; };
@@ -626,6 +628,7 @@
 				A9C61DE81B6A75D4005C3D9B /* MQTT */,
 				F0A2C97016BBE44500F2FD12 /* Supporting Files */,
 				F08BFF4718A4F7E600EF43FB /* UI */,
+				B6C8C5741C704072009906FA /* BackgroundProcessingRequest.swift */,
 			);
 			name = Classes;
 			path = "BLE Test";
@@ -1090,6 +1093,7 @@
 				F0B7D14319F1081C00DFDDBE /* BLEDevice.swift in Sources */,
 				F08F81101B0BD9DF000F3A87 /* XMLDictionary.m in Sources */,
 				F0CCCF9C1B0F266D0061558B /* DFUViewController.m in Sources */,
+				B6C8C5751C704072009906FA /* BackgroundProcessingRequest.swift in Sources */,
 				F0A1D4671A80B6A3009C3001 /* BLESensorButton.swift in Sources */,
 				A98580161B66F4C5000F93DA /* MqttSettingsViewController.swift in Sources */,
 				F0DBB56A19F4625800CB91E1 /* DeviceCell.swift in Sources */,

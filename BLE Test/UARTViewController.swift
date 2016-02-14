@@ -17,6 +17,18 @@ protocol UARTViewControllerDelegate: HelpViewControllerDelegate {
     
 }
 
+extension UIApplicationState {
+    func toString() -> String {
+        switch self {
+        case .Active:
+            return "Active"
+        case .Background:
+            return "Background"
+        case .Inactive:
+            return "Inactive"
+        }
+    }
+}
 
 class UARTViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, MqttManagerDelegate, UIPopoverControllerDelegate {
 
@@ -656,24 +668,30 @@ class UARTViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
     
     func onMqttConnected() {
         MqttManager.sharedInstance.supportVOIP()
+        UIApplication.sharedApplication().requestAdditionalTime(5)
         dispatch_async(dispatch_get_main_queue(), { [unowned self] in
             self.updateMqttStatus()
             })
     }
     
     func onMqttDisconnected() {
+        UIApplication.sharedApplication().requestAdditionalTime(5)
         dispatch_async(dispatch_get_main_queue(), { [unowned self] in
             self.updateMqttStatus()
             })
     }
     
     func onMqttMessageReceived(message : String, topic: String) {
+        let app = UIApplication.sharedApplication()
+        NSLog("application state: \(app.applicationState.toString()), remaining background time: \(app.backgroundTimeRemaining)")
+        app.requestAdditionalTime(5)
         dispatch_async(dispatch_get_main_queue(), { [unowned self] in
             self.sendUartMessage((message as NSString), wasReceivedFromMqtt: true)
             })
     }
     
     func onMqttError(message : String) {
+        UIApplication.sharedApplication().requestAdditionalTime(5)
         let alert = UIAlertController(title:"Error", message: message, preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
