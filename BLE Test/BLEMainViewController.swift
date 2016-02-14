@@ -135,7 +135,7 @@ class BLEMainViewController : UIViewController, UINavigationControllerDelegate, 
         
         // Create core bluetooth manager on launch
         if (cm == nil) {
-            cm = CBCentralManager(delegate: self, queue: cbcmQueue)
+            cm = CBCentralManager(delegate: self, queue: cbcmQueue, options: [CBCentralManagerOptionRestoreIdentifierKey: "com.adafruit.bluetooth-central"])
             
             connectionMode = ConnectionMode.None
             connectionStatus = ConnectionStatus.Idle
@@ -651,6 +651,10 @@ class BLEMainViewController : UIViewController, UINavigationControllerDelegate, 
     
     
     //MARK: CBCentralManagerDelegate methods
+    
+    func centralManager(central: CBCentralManager, willRestoreState dict: [String : AnyObject]) {
+        print(dict)
+    }
     
     func centralManagerDidUpdateState(central: CBCentralManager) {
         
