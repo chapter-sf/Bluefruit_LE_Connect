@@ -42,6 +42,8 @@ class MqttManager
     // Data
     weak var delegate : MqttManagerDelegate?
     var status = ConnectionStatus.None
+    var inputStream: NSInputStream?
+    var outputStream: NSOutputStream?
 
     private var mqttClient : MQTTClient?
     
@@ -119,6 +121,22 @@ class MqttManager
         MqttSettings.sharedInstance.isConnected = true
         status = ConnectionStatus.Connecting
         mqttClient = MQTT.newConnection(mqttConfig)
+    }
+    
+    func supportVOIP() {
+        if let socket = mqttClient?.socket {
+            var readStreamRef: Unmanaged<CFReadStreamRef>? = nil
+            var writeStreamRef: Unmanaged<CFWriteStreamRef>? = nil
+            CFStreamCreatePairWithSocket(nil, socket, &readStreamRef, &writeStreamRef)
+            
+            inputStream = readStreamRef?.takeUnretainedValue()
+            outputStream = writeStreamRef?.takeUnretainedValue()
+            
+            inputStream?.setProperty(NSStreamNetworkServiceTypeVoIP, forKey: NSStreamNetworkServiceType)
+            outputStream?.setProperty(NSStreamNetworkServiceTypeVoIP, forKey: NSStreamNetworkServiceType)
+            inputStream?.open()
+            outputStream?.open()
+        }
     }
 
     func subscribe(topic: String, qos: MqttQos) {

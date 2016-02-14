@@ -514,6 +514,7 @@ class MqttSettingsViewController: KeyboardAwareViewController, UITableViewDelega
     
     func onMqttConnected() {
         // Update status
+        MqttManager.sharedInstance.supportVOIP()
         dispatch_async(dispatch_get_main_queue(), { [unowned self] in
             self.baseTableView.reloadData()
             })

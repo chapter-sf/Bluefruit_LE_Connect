@@ -655,6 +655,7 @@ class UARTViewController: UIViewController, UITextFieldDelegate, UITextViewDeleg
     // MARK: MqttManagerDelegate
     
     func onMqttConnected() {
+        MqttManager.sharedInstance.supportVOIP()
         dispatch_async(dispatch_get_main_queue(), { [unowned self] in
             self.updateMqttStatus()
             })
