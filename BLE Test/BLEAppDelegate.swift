@@ -49,6 +49,8 @@ class BLEAppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
         NSUserDefaults.standardUserDefaults().registerDefaults(appDefaults)
         NSUserDefaults.standardUserDefaults().synchronize()
         
+        application.registerForRemoteNotifications()
+        
         if WCSession.isSupported() {
             print("creating WCSession …")
             let session = WCSession.defaultSession()
@@ -67,6 +69,35 @@ class BLEAppDelegate: UIResponder, UIApplicationDelegate, WCSessionDelegate {
         
     }
     
+    func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
+        NSLog("Unable to register for push \(error)")
+    }
+    
+    func application(application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: NSData) {
+        NSLog("Registered for push with device \(deviceToken)")
+    }
+    
+    func application(application: UIApplication, didReceiveRemoteNotification userInfo: [NSObject : AnyObject], fetchCompletionHandler completionHandler: (UIBackgroundFetchResult) -> Void) {
+        NSLog("Got remote notification \(userInfo)")
+        if let cmd = userInfo["cmd"] as? String {
+            if let uart = self.mainViewController?.uartViewController {
+                uart.sendUartMessage(cmd, wasReceivedFromMqtt: false)
+                completionHandler(.NewData)
+            }
+            else {
+                let localNote = UILocalNotification()
+                localNote.alertBody = "Weather notification received, but not currently connected to device"
+                localNote.alertTitle = "Not Configured"
+                localNote.alertAction = "configure"
+                
+                application.presentLocalNotificationNow(localNote)
+                completionHandler(.Failed)
+            }
+        }
+        else {
+            completionHandler(.NoData)
+        }
+    }
     
     func applicationWillResignActive(application: UIApplication) {
         

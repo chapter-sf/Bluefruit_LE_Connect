@@ -35,6 +35,7 @@
 		<string>bluetooth-central</string>
 		<string>bluetooth-peripheral</string>
 		<string>location</string>
+		<string>remote-notification</string>
 	</array>
 	<key>UIPrerenderedIcon</key>
 	<true/>

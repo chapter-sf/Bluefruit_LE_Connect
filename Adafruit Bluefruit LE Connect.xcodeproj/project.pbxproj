@@ -837,6 +837,9 @@
 					F0A2C96516BBE44500F2FD12 = {
 						DevelopmentTeam = 2X94RM7457;
 						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
 							com.apple.iCloud = {
 								enabled = 1;
 							};
